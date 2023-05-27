@@ -11,9 +11,8 @@
   imports = [
     ./i3.nix
     ../../users/${userName}
+    ./hardware-configuration.nix
   ];
-
-  fileSystems."/" = { };
 
   boot.loader.systemd-boot.enable = true;
 
