@@ -9,6 +9,14 @@ in
       {
         nixpkgs.pkgs = pkgs;
       }
+      home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = { };
+        };
+      }
     ];
     specialArgs = {
       inherit home-manager userName;

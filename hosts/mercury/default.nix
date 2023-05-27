@@ -1,5 +1,17 @@
-{ config, lib, specialArgs, options, modulesPath, pkgs, userName, home-manager }: {
-  imports = [ ./hyprland.nix ];
+{ config
+, lib
+, specialArgs
+, options
+, modulesPath
+, pkgs
+, userName
+, home-manager
+}:
+{
+  imports = [
+    ./i3.nix
+    ../../users/${userName}
+  ];
 
   fileSystems."/" = { };
 
@@ -19,5 +31,5 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "23.05";
 }
