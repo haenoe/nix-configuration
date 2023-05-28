@@ -1,6 +1,9 @@
 { userName, home-manager, ... }: {
   home-manager.users.${userName} = {
-    imports = [ ./git.nix ];
+    imports = [
+      ./git.nix
+      ./neovim
+    ];
     home = {
       username = userName;
       homeDirectory = "/home/${userName}";
