@@ -1,5 +1,5 @@
 {
-  description = "A configuration all things nix.";
+  description = "haenoe's configuration files - built with nix flakes";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
