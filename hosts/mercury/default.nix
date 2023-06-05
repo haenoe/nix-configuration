@@ -28,6 +28,7 @@
   users.users.${userName} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
+    password = "foo";
   };
 
   system.stateVersion = "23.05";
