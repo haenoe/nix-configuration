@@ -16,6 +16,14 @@
 
   boot.loader.systemd-boot.enable = true;
 
+  # Nvidia GPU specific config  
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+  };
+
   networking.hostName = "mercury";
 
   networking.networkmanager.enable = true;
