@@ -14,7 +14,17 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
+  # Boot config
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+    };
+    grub = {
+      enable = true;
+      useOSProber = true;
+      devices = [ "nodev" ];
+    };
+  };
 
   # Nvidia GPU specific config  
   services.xserver.videoDrivers = [ "nvidia" ];
