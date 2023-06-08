@@ -18,9 +18,11 @@
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
+      efiSupport = true;
       useOSProber = true;
       devices = [ "nodev" ];
     };
@@ -28,6 +30,7 @@
 
   # Nvidia GPU specific config  
   services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.xkbVariant = "dvorak";
   hardware.opengl.enable = true;
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -48,6 +51,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
     password = "foo";
   };
+
+  environment.systemPackages = [ pkgs.fd pkgs.wezterm ];
 
   system.stateVersion = "23.05";
 }

@@ -1,4 +1,4 @@
-{ home-manager, userName, lib, ... }: {
+{ home-manager, userName, lib, pkgs, ... }: {
   services.xserver = {
     enable = true;
     windowManager.i3.enable = true;
@@ -10,7 +10,9 @@
     };
     services.polybar = {
       enable = true;
-      script = "polybar bar &";
+      script = ''
+        polybar bar &
+      '';
     };
     xdg.configFile."i3/config".source = lib.mkForce ./config;
   };
