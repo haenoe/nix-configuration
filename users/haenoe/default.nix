@@ -3,6 +3,8 @@
     imports = [
       ./git.nix
       ./rofi.nix
+      ./firefox.nix
+      ./chromium.nix
       ./neovim
     ];
     home = {
