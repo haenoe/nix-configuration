@@ -9,7 +9,7 @@
 }:
 {
   imports = [
-    ./i3.nix
+    ./bspwm.nix
     ../../users/${userName}
     ./hardware-configuration.nix
   ];
@@ -52,7 +52,7 @@
     password = "foo";
   };
 
-  environment.systemPackages = [ pkgs.fd pkgs.wezterm ];
+  environment.systemPackages = [ pkgs.fd pkgs.wezterm pkgs.alacritty ];
 
   system.stateVersion = "23.05";
 }

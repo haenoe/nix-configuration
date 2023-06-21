@@ -2,6 +2,7 @@
   home-manager.users.${userName} = {
     imports = [
       ./git.nix
+      ./rofi.nix
       ./neovim
     ];
     home = {
