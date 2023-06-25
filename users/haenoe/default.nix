@@ -1,6 +1,7 @@
 { userName, home-manager, ... }: {
   home-manager.users.${userName} = {
     imports = [
+      ./alacritty.nix
       ./git.nix
       ./rofi.nix
       ./firefox.nix
