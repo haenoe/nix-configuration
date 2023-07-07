@@ -6,6 +6,7 @@
       ./rofi.nix
       ./firefox.nix
       ./chromium.nix
+      ./zsh.nix
       ./neovim
     ];
     home = {
