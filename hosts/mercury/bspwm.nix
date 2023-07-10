@@ -21,10 +21,10 @@
       sxhkd = {
         enable = true;
         keybindings = {
-          "super + Return" = "alacritty";
-          "super + space" = "${pkgs.rofi}/bin/rofi -show drun";
-          "super + q" = "${pkgs.bspwm}/bin/bspc node -c";
-          "super + {_, shift +} + {h,j,k,l}" = "${pkgs.bspwm}/bin/bspc node -{f,s} {west,east,north,south}";
+          "alt + Return" = "alacritty";
+          "alt + space" = "${pkgs.rofi}/bin/rofi -show drun";
+          "alt + q" = "${pkgs.bspwm}/bin/bspc node -c";
+          "alt + {_, shift +} + {h,j,k,l}" = "${pkgs.bspwm}/bin/bspc node -{f,s} {west,east,north,south}";
         };
       };
     };
