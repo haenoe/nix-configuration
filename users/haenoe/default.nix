@@ -7,6 +7,7 @@
       ./firefox.nix
       ./chromium.nix
       ./zsh.nix
+      ./picom.nix
       ./neovim
     ];
     home = {
