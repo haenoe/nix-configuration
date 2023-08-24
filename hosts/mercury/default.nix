@@ -15,27 +15,30 @@
     ./hardware-configuration.nix
   ];
 
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda";
+
   # Boot config
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      useOSProber = true;
-      devices = [ "nodev" ];
-    };
-  };
+  # boot.loader = {
+  #   efi = {
+  #     canTouchEfiVariables = true;
+  #     efiSysMountPoint = "/boot";
+  #   };
+  #   grub = {
+  #     enable = true;
+  #     efiSupport = true;
+  #     useOSProber = true;
+  #     devices = [ "nodev" ];
+  #   };
+  # };
 
   # Nvidia GPU specific config  
-  services.xserver.videoDrivers = [ "nvidia" ];
+  # services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
-  };
+  # hardware.nvidia = {
+  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #   modesetting.enable = true;
+  # };
 
   networking.hostName = "mercury";
 
