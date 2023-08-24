@@ -8,9 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, ... } @ inputs:
     let
       userName = "haenoe";
       localSystem = "x86_64-linux";
@@ -23,5 +24,17 @@
       nixosConfigurations = (import ./hosts {
         inherit self home-manager inputs userName localSystem pkgs;
       });
+      deploy = {
+        user = "root";
+        # remoteBuild = true;
+        autoRollback = false;
+        nodes = {
+          "haenoe@mercury" = {
+            hostname = "192.168.122.144";
+            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mercury;
+          };
+        };
+      };
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }

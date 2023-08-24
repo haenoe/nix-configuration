@@ -42,9 +42,15 @@
 
   networking.hostName = "mercury";
 
+  services.openssh.enable = true;
+
   users.users.${userName} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     password = "foo";
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNRp42Uzw6MYuZcY62s2VS0Awa+pABLd5XB5GoJgOuY programmierhaenoe@outlook.de" ];
   };
+
+  security.sudo.wheelNeedsPassword = false;
+  nix.settings.trusted-users = [ "root" "@wheel" ];
 }
