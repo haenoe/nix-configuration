@@ -22,4 +22,12 @@ in
       inherit home-manager userName;
     };
   };
+  pluto = lib.nixosSystem {
+    modules = [
+      (./. + "/haenoe@pluto")
+      {
+        nixpkgs.pkgs = pkgs;
+      }
+    ];
+  };
 }

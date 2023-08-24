@@ -18,6 +18,8 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Boot config
   # boot.loader = {
   #   efi = {

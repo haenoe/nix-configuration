@@ -33,6 +33,10 @@
             hostname = "192.168.122.144";
             profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mercury;
           };
+          # "haenoe@pluto" = {
+          #   hostname = "192.168.178.71";
+          #   profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.pluto;
+          # };
         };
       };
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
