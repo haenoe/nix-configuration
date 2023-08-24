@@ -5,7 +5,7 @@ in
 {
   mercury = lib.nixosSystem {
     modules = [
-      ./mercury
+      (./. + "/haenoe@mercury")
       {
         nixpkgs.pkgs = pkgs;
       }
