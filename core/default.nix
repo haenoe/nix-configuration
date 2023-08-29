@@ -1,4 +1,4 @@
-{ pkgs, lib, userName, ... }: {
+{ pkgs, lib, ... }: {
 
   # Locale
   time.timeZone = lib.mkDefault "Europe/Berlin";
@@ -13,7 +13,7 @@
 
   programs.zsh.enable = true;
 
-  users.users.${userName}.shell = pkgs.zsh;
+  users.users.haenoe.shell = pkgs.zsh;
   users.mutableUsers = false;
 
   system.stateVersion = "23.05";

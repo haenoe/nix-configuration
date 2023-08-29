@@ -4,7 +4,6 @@
 , options
 , modulesPath
 , pkgs
-, userName
 , home-manager
 }:
 {
@@ -46,7 +45,7 @@
 
   services.openssh.enable = true;
 
-  users.users.${userName} = {
+  users.users.haenoe = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     password = "foo";
@@ -59,4 +58,3 @@
     trusted-users = [ "root" "@wheel" ];
   };
 }
-    

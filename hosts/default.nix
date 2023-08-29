@@ -1,4 +1,4 @@
-{ self, home-manager, inputs, userName, localSystem, pkgs }:
+{ self, home-manager, inputs }:
 let
   lib = inputs.nixpkgs.lib;
 in
@@ -6,9 +6,6 @@ in
   mercury = lib.nixosSystem {
     modules = [
       (./. + "/haenoe@mercury")
-      {
-        nixpkgs.pkgs = pkgs;
-      }
       home-manager.nixosModules.home-manager
       {
         home-manager = {
@@ -19,15 +16,12 @@ in
       }
     ];
     specialArgs = {
-      inherit home-manager userName;
+      inherit home-manager;
     };
   };
   pluto = lib.nixosSystem {
     modules = [
       (./. + "/haenoe@pluto")
-      {
-        nixpkgs.pkgs = pkgs;
-      }
     ];
   };
 }

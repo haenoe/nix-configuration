@@ -1,11 +1,11 @@
-{ home-manager, userName, lib, pkgs, ... }: {
+{ home-manager, lib, pkgs, ... }: {
   services.xserver = {
     enable = true;
     windowManager.bspwm.enable = true;
     displayManager.lightdm.enable = true;
   };
 
-  home-manager.users.${userName} = {
+  home-manager.users.haenoe = {
     xsession = {
       enable = true;
       windowManager.bspwm = {

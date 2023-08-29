@@ -1,5 +1,5 @@
-{ userName, home-manager, ... }: {
-  home-manager.users.${userName} = {
+{ home-manager, ... }: {
+  home-manager.users.haenoe = {
     imports = [
       ./alacritty.nix
       ./git.nix
@@ -11,8 +11,8 @@
       ./neovim
     ];
     home = {
-      username = userName;
-      homeDirectory = "/home/${userName}";
+      username = "haenoe";
+      homeDirectory = "/home/haenoe";
       stateVersion = "23.05";
     };
   };
