@@ -9,12 +9,13 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     deploy-rs.url = "github:serokell/deploy-rs";
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, ... } @ inputs:
     {
       nixosConfigurations = (import ./hosts {
-        inherit self home-manager inputs;
+        inherit self home-manager inputs nur;
       });
       deploy = {
         user = "root";

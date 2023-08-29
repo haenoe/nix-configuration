@@ -1,4 +1,4 @@
-{ self, home-manager, inputs }:
+{ self, home-manager, inputs, nur }:
 let
   lib = inputs.nixpkgs.lib;
 in
@@ -6,6 +6,7 @@ in
   mercury = lib.nixosSystem {
     modules = [
       (./. + "/haenoe@mercury")
+      nur.nixosModules.nur
       home-manager.nixosModules.home-manager
       {
         home-manager = {
