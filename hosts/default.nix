@@ -6,6 +6,7 @@ in
   mercury = lib.nixosSystem {
     modules = [
       (./. + "/haenoe@mercury")
+      ../modules/core.nix
       nur.nixosModules.nur
       home-manager.nixosModules.home-manager
       {
@@ -23,6 +24,7 @@ in
   pluto = lib.nixosSystem {
     modules = [
       (./. + "/haenoe@pluto")
+      ../modules/core.nix
     ];
   };
 }

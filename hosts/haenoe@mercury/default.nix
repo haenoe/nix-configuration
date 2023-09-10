@@ -8,7 +8,6 @@
 }:
 {
   imports = [
-    ../../core
     ./bspwm.nix
     ../../users/haenoe
     ./hardware-configuration.nix
