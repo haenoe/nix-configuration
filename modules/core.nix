@@ -7,6 +7,9 @@
   services.xserver.xkbVariant = "dvorak";
   console.useXkbConfig = true;
 
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
   environment.systemPackages = [ pkgs.fd pkgs.alacritty pkgs.neovim ];
 
   networking.networkmanager.enable = true;
