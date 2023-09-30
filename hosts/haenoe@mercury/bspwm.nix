@@ -34,7 +34,8 @@
           "alt + Return" = "alacritty";
           "alt + space" = "${pkgs.rofi}/bin/rofi -show drun";
           "alt + q" = "${pkgs.bspwm}/bin/bspc node -c";
-          "alt + {_, shift +} + {h,j,k,l}" = "${pkgs.bspwm}/bin/bspc node -{f,s} {west,east,north,south}";
+	  "alt + {a,o,e,u}" = "${pkgs.bspwm}/bin/bspc desktop -f {1-4}";
+          "alt + {_, shift +} + {h,j,k,l}" = "${pkgs.bspwm}/bin/bspc node -{f,s} {west,south,north,east}";
         };
       };
     };
