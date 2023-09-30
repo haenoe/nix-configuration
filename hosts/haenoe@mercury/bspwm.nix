@@ -13,6 +13,11 @@
       enable = true;
       windowManager.bspwm = {
         enable = true;
+	rules = {
+	  "Pcmanfm" = {
+	    state = "floating";
+	  };
+	};
       };
     };
     services = {
