@@ -13,6 +13,14 @@
       enable = true;
       windowManager.bspwm = {
         enable = true;
+	monitors = {
+	  DP-0 = [
+	    "1"
+	    "2"
+	    "3"
+	    "4"
+	  ];
+	};
 	rules = {
 	  "Pcmanfm" = {
 	    state = "floating";
