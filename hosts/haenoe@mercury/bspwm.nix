@@ -21,12 +21,6 @@
       };
     };
     services = {
-      polybar = {
-        enable = true;
-        script = ''
-          polybar &
-        '';
-      };
       sxhkd = {
         enable = true;
 	extraOptions = [ "-m -1" ];

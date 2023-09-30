@@ -8,6 +8,7 @@
       ./chromium.nix
       ./zsh.nix
       ./picom.nix
+      ./polybar.nix
       ./neovim
     ];
     home = {
