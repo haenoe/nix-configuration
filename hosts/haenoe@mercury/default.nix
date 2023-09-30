@@ -33,6 +33,10 @@
   #   };
   # };
 
+  environment.systemPackages = [
+    pkgs.pcmanfm
+  ];
+
   # Nvidia GPU specific config  
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
