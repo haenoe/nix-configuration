@@ -2,7 +2,10 @@
   services.xserver = {
     enable = true;
     windowManager.bspwm.enable = true;
-    displayManager.lightdm.enable = true;
+    displayManager = { 
+      lightdm.enable = true; 
+      sessionCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 144";
+    };
   };
 
   home-manager.users.haenoe = {
