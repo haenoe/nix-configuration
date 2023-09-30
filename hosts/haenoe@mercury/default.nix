@@ -35,6 +35,7 @@
 
   environment.systemPackages = [
     pkgs.pcmanfm
+    pkgs.obsidian
   ];
 
   # Nvidia GPU specific config  
