@@ -16,5 +16,7 @@
   users.users.haenoe.shell = pkgs.zsh;
   users.mutableUsers = false;
 
+  nixpkgs.config.allowUnfree = true;
+
   system.stateVersion = "23.05";
 }
