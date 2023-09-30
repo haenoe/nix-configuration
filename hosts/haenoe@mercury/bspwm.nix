@@ -29,6 +29,7 @@
       };
       sxhkd = {
         enable = true;
+	extraOptions = [ "-m -1" ];
         keybindings = {
           "alt + Return" = "alacritty";
           "alt + space" = "${pkgs.rofi}/bin/rofi -show drun";
