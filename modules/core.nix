@@ -1,4 +1,7 @@
 { pkgs, lib, ... }: {
+  imports = [
+    ./fonts.nix
+  ];
 
   # Locale
   time.timeZone = lib.mkDefault "Europe/Berlin";
