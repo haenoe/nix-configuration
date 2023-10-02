@@ -27,4 +27,10 @@ in
       ../modules/core.nix
     ];
   };
+  saturn = lib.nixosSystem {
+    modules = [
+      (./. + "/haenoe@saturn")
+      ../modules/core.nix
+    ];
+  };
 }
