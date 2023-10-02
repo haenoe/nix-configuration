@@ -3,12 +3,15 @@
     ./fonts.nix
   ];
 
-  # Locale
   time.timeZone = lib.mkDefault "Europe/Berlin";
-  i18n.defaultLocale = "en_US.UTF-8";
 
-  services.xserver.xkbVariant = "dvorak";
-  console.useXkbConfig = true;
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    useXkbConfig = true;
+    keyMap = lib.mkForce "dvorak";
+  };
+
+  services.xserver.xkbVariant = lib.mkForce "dvorak";
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
