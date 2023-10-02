@@ -9,6 +9,7 @@
       ./zsh.nix
       ./picom.nix
       ./polybar.nix
+      ./xdg.nix
       ./neovim
     ];
     home = {
