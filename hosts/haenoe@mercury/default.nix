@@ -10,6 +10,7 @@
   imports = [
     ./bspwm.nix
     ../../users/haenoe
+    ../../modules/syncthing.nix
     ./hardware-configuration.nix
   ];
 
@@ -17,7 +18,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.tmp.useTmpfs = true;
 
   # Boot config
