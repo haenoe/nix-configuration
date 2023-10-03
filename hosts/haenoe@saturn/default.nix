@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./services/traefik.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
