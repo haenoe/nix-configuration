@@ -11,10 +11,13 @@
 
   networking.hostName = "saturn";
 
-  virtualisation.docker = { 
-    enable = true;
-    enableOnBoot = true;
-    autoPrune.enable = true;
+  virtualisation = {
+    docker = { 
+      enable = true;
+      enableOnBoot = true;
+      autoPrune.enable = true;
+    };
+    oci-containers.backend = "docker";
   };
 
   users.users.haenoe = {
