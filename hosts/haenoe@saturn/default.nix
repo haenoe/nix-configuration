@@ -11,9 +11,15 @@
 
   networking.hostName = "saturn";
 
+  virtualisation.docker = { 
+    enable = true;
+    enableOnBoot = true;
+    autoPrune.enable = true;
+  };
+
   users.users.haenoe = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5laWkCjzbloX88KuPDJprh9AkHAFnPUGfEuTZyxjtp haenoe@mercury" ];
   };
 
