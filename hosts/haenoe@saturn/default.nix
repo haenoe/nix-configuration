@@ -33,6 +33,8 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
+  services.tailscale.enable = true;
+
   security.sudo.wheelNeedsPassword = false;
 
   nix.settings = {

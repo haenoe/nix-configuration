@@ -39,6 +39,8 @@
     pkgs.obsidian
   ];
 
+  services.tailscale.enable = true;
+
   # Nvidia GPU specific config  
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
