@@ -6,7 +6,8 @@
         TERM = "xterm-256color";
       };
       font = {
-        size = 12.00;
+        size = 14.00;
+        normal.family = "Iosevka Term Nerd Font";
       };
       window = {
         padding = {
