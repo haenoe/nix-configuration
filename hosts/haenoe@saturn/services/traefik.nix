@@ -1,6 +1,6 @@
 { ... }:
 {
-  virtualisation.oci-containers.containers.trafik = {
+  virtualisation.oci-containers.containers.traefik = {
     autoStart = true;
     image = "traefik:v2.10";
     cmd = [ "--api.insecure=true" "--providers.docker" ];
