@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./services/traefik.nix
+      ./services/homer
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -13,7 +14,7 @@
   networking.hostName = "saturn";
 
   virtualisation = {
-    docker = { 
+    docker = {
       enable = true;
       enableOnBoot = true;
       autoPrune.enable = true;
@@ -27,7 +28,7 @@
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5laWkCjzbloX88KuPDJprh9AkHAFnPUGfEuTZyxjtp haenoe@mercury" ];
   };
 
-  services.openssh = { 
+  services.openssh = {
     enable = true;
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;

@@ -1,0 +1,58 @@
+title: "Dashboard"
+stylesheet:
+  - "assets/theme.css"
+logo: "assets/dark_circle.png"
+
+connectivityCheck: true
+
+links:
+  - name: "Startpage"
+    icon: "fas fa-file-alt"
+    url: "#"
+  - name: "Homelab"
+    icon: "fas fa-server"
+    url: "#homelab"
+
+services:
+  - name: "Monitoring"
+    icon: "fa-solid fa-heart-pulse"
+    items:
+      - name: "Uptime Kuma"
+        logo: "assets/service-icons/uptime-kuma.svg"
+        url: "https://uptime.haenoe.xyz"
+        slug: "homelab"
+        type: "UptimeKuma"
+      - name: "Grafana"
+        logo: "assets/service-icons/grafana.svg"
+        url: "https://grafana.haenoe.xyz"
+  - name: "Applications"
+    icon: "fa-solid fa-microchip"
+    items:
+      - name: "Vaultwarden"
+        logo: "assets/aegis-icons/Bitwarden.svg"
+        url: "https://vault.haenoe.xyz"
+        type: Ping
+        method: "GET"
+        tag: "app"
+        subtitle: "password manager"
+      - name: "Stirling PDF"
+        logo: "https://raw.githubusercontent.com/Frooodle/Stirling-PDF/main/docs/stirling.png"
+        url: "https://pdf.haenoe.xyz"
+        type: Ping
+        method: "GET"
+        tag: "app"
+        subtitle: "pdf wrangler"
+      - name: "Actual Budget"
+        logo: "assets/service-icons/actual.svg"
+        url: "https://budget.haenoe.xyz"
+        type: Ping
+        method: "GET"
+  - name: "Services"
+    icon: "fa-solid fa-heart-pulse"
+    items:
+      - name: "Wolke"
+        logo: "assets/service-icons/nextcloud.svg"
+        url: "https://cloud.haenoe.xyz"
+      - name: "Migadu"
+        logo: "assets/aegis-icons/Migadu.svg"
+        url: "https://migadu.com"
