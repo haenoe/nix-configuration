@@ -126,6 +126,13 @@ return {
       -- ensure_installed = vim.tbl_keys(servers),
     }
 
+
+    require('lspconfig')['nil_ls'].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers['nil_ls'],
+    }
+
     mason_lspconfig.setup_handlers {
       function(server_name)
         -- if server_name == "rust_analyzer" then
