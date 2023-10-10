@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{ home-manager, pkgs, ... }: {
   home-manager.users.haenoe = {
     imports = [
       ./alacritty.nix
