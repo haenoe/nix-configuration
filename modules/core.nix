@@ -1,7 +1,15 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, hostInformation, hostName, ... }: {
   imports = [
     ./fonts.nix
   ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit hostInformation hostName;
+    };
+  };
 
   time.timeZone = lib.mkDefault "Europe/Berlin";
 
@@ -22,7 +30,7 @@
 
   programs.zsh.enable = true;
 
-  users.users.haenoe.shell = pkgs.zsh;
+  users.users.${hostInformation.mainUser}.shell = pkgs.zsh;
   users.mutableUsers = false;
 
   nixpkgs.config.allowUnfree = true;

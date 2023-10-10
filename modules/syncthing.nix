@@ -1,12 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, hostInformation, ... }:
 {
-  services.syncthing = { 
+  services.syncthing = {
     enable = true;
-    user = "haenoe";
-    dataDir = "/home/haenoe/syncthing";
+    user = hostInformation.mainUser;
+    dataDir = "/home/${hostInformation.mainUser}/syncthing";
     overrideDevices = true;
     overrideFolders = true;
-    settings.devices = {};
-    settings.folders = {};
+    settings.devices = { };
+    settings.folders = { };
   };
 }
