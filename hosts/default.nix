@@ -1,11 +1,28 @@
 { self, home-manager, inputs, nur }:
 let
   lib = inputs.nixpkgs.lib;
+  hosts = {
+    mercury = {
+      mainUser = "haenoe";
+      address = "";
+      system = "x86_64-linux";
+    };
+    pluto = {
+      mainUser = "haenoe";
+      address = "";
+      system = "aarch64-linux";
+    };
+    saturn = {
+      mainUser = "haenoe";
+      address = "";
+      system = "x84_64-linux";
+    };
+  };
 in
-{
-  mercury = lib.nixosSystem {
+lib.mapAttrs
+  (hostName: { mainUser, ... } @ hostInformation: lib.nixosSystem {
     modules = [
-      (./. + "/haenoe@mercury")
+      (./. + "/${mainUser}@${hostName}")
       ../modules/core.nix
       nur.nixosModules.nur
       home-manager.nixosModules.home-manager
@@ -18,19 +35,7 @@ in
       }
     ];
     specialArgs = {
-      inherit home-manager;
+      inherit hostInformation hostName home-manager;
     };
-  };
-  pluto = lib.nixosSystem {
-    modules = [
-      (./. + "/haenoe@pluto")
-      ../modules/core.nix
-    ];
-  };
-  saturn = lib.nixosSystem {
-    modules = [
-      (./. + "/haenoe@saturn")
-      ../modules/core.nix
-    ];
-  };
-}
+  })
+  hosts

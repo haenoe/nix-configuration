@@ -1,15 +1,8 @@
-{ config
-, lib
-, specialArgs
-, options
-, modulesPath
-, pkgs
-, home-manager
-}:
+{ config, hostInformation, pkgs, ... }:
 {
   imports = [
     ./bspwm.nix
-    ../../users/haenoe
+    ../../users/${hostInformation.mainUser}
     ../../modules/syncthing.nix
     ./hardware-configuration.nix
   ];
@@ -34,7 +27,7 @@
   #   };
   # };
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     pkgs.pcmanfm
     pkgs.obsidian
   ];
