@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./services/traefik.nix
+      ./services/grafana.nix
       ./services/homer
     ];
 
