@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./services/traefik.nix
       ./services/grafana.nix
+      ./services/prometheus.nix
       ./services/homer
     ];
 
