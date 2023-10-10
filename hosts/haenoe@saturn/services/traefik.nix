@@ -1,4 +1,4 @@
-{ ... }:
+{ hostName, hostInformation, ... }:
 {
   virtualisation.oci-containers.containers.traefik = {
     autoStart = true;
@@ -17,13 +17,12 @@
       "--certificatesresolvers.cfresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53"
       "--certificatesresolvers.cfresolver.acme.dnschallenge.provider=cloudflare"
     ];
-    environment = {
-    };
-    ports = [ "100.107.69.134:80:80" "100.107.69.134:443:443" "100.107.69.134:8080:8080" ];
+    environment = { };
+    ports = [ "${hostInformation.address}:80:80" "${hostInformation.address}:443:443" ];
     volumes = [ "/run/docker.sock:/var/run/docker.sock:ro" "/etc/traefik/letsencrypt:/letsencrypt" ];
     extraOptions = [
       "-ltraefik.enable=true"
-      "-ltraefik.http.routers.dashboard.rule=Host(`traefik.saturn.haenoe.party`)"
+      "-ltraefik.http.routers.dashboard.rule=Host(`traefik.${hostName}.haenoe.party`)"
       "-ltraefik.http.routers.dashboard.service=api@internal"
       "-ltraefik.http.routers.dashboard.entrypoints=websecure"
       "-ltraefik.http.routers.dashboard.tls=true"
@@ -37,7 +36,7 @@
     dependsOn = [ "traefik" ];
     extraOptions = [
       "-ltraefik.enable=true"
-      "-ltraefik.http.routers.whoami.rule=Host(`whoami.saturn.haenoe.party`)"
+      "-ltraefik.http.routers.whoami.rule=Host(`whoami.${hostInformation.address}.haenoe.party`)"
       "-ltraefik.http.routers.whoami.entrypoints=websecure"
       "-ltraefik.http.routers.whoami.tls=true"
       "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
