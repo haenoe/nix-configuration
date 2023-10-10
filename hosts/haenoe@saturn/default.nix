@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./services/traefik.nix
+      ./services/uptimekuma.nix
       ./services/homer
     ];
 
