@@ -1,4 +1,4 @@
-{ hostName, hostInformation, ... }:
+{ lib, config, hostName, hostInformation, ... }:
 {
   virtualisation.oci-containers.containers.traefik = {
     autoStart = true;
@@ -27,7 +27,28 @@
       "-ltraefik.http.routers.dashboard.entrypoints=websecure"
       "-ltraefik.http.routers.dashboard.tls=true"
       "-ltraefik.http.routers.dashboard.tls.certresolver=cfresolver"
+      "--network=internal"
+      "--hostname=traefik.saturn.docker.internal"
     ];
+  };
+
+  networking.firewall.trustedInterfaces = [ "internal0" ];
+
+  systemd.services.docker-network-internal = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "docker.service" "docker.socket" ];
+    requiredBy = map (n: "docker-${n}.service") (lib.attrNames config.virtualisation.oci-containers.containers);
+    path = [ config.virtualisation.docker.package ];
+    script = ''
+      exec docker network create -d bridge -o "com.docker.network.bridge.name"="internal0" internal
+    '';
+    postStop = ''
+      exec docker network rm internal
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
   };
 
   virtualisation.oci-containers.containers.whoami = {

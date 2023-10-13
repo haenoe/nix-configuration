@@ -9,10 +9,11 @@
     ];
     extraOptions = [
       "-ltraefik.enable=true"
-      "-ltraefik.http.routers.whoami.rule=Host(`grafana.${hostName}.haenoe.party`)"
-      "-ltraefik.http.routers.whoami.entrypoints=websecure"
-      "-ltraefik.http.routers.whoami.tls=true"
-      "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
+      "-ltraefik.http.routers.grafana.rule=Host(`grafana.${hostName}.haenoe.party`)"
+      "-ltraefik.http.routers.grafana.entrypoints=websecure"
+      "-ltraefik.http.routers.grafana.tls=true"
+      "-ltraefik.http.routers.grafana.tls.certresolver=cfresolver"
+      "--network=internal"
     ];
   };
 }

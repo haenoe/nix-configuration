@@ -10,10 +10,11 @@
     ];
     extraOptions = [
       "-ltraefik.enable=true"
-      "-ltraefik.http.routers.whoami.rule=Host(`prometheus.${hostName}.haenoe.party`)"
-      "-ltraefik.http.routers.whoami.entrypoints=websecure"
-      "-ltraefik.http.routers.whoami.tls=true"
-      "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
+      "-ltraefik.http.routers.prometheus.rule=Host(`prometheus.${hostName}.haenoe.party`)"
+      "-ltraefik.http.routers.prometheus.entrypoints=websecure"
+      "-ltraefik.http.routers.prometheus.tls=true"
+      "-ltraefik.http.routers.prometheus.tls.certresolver=cfresolver"
+      "--network=internal"
       "--add-host=host.docker.internal:host-gateway"
     ];
   };

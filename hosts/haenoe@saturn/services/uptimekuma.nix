@@ -13,6 +13,8 @@
       "-ltraefik.http.routers.uptimekuma.entrypoints=websecure"
       "-ltraefik.http.routers.uptimekuma.tls=true"
       "-ltraefik.http.routers.uptimekuma.tls.certresolver=cfresolver"
+      "--network=internal"
+      "--hostname=uptimekuma.saturn.internal"
     ];
   };
 }
