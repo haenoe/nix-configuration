@@ -14,32 +14,23 @@
       "-ltraefik.http.routers.whoami.entrypoints=websecure"
       "-ltraefik.http.routers.whoami.tls=true"
       "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
+      "--add-host=host.docker.internal:host-gateway"
     ];
   };
 
-  virtualisation.oci-containers.containers.node-exporter = {
-    autoStart = true;
-    image = "prom/node-exporter:v1.6.1";
-    dependsOn = [ "traefik" "prometheus" ];
-    volumes = [
-      "/:/host:ro,rslave"
-    ];
-    extraOptions = [
-      "-ltraefik.enable=true"
-      "-ltraefik.http.routers.whoami.rule=Host(`${hostName}.haenoe.party`) && PathPrefix(`/metrics`)"
-      "-ltraefik.http.routers.whoami.entrypoints=websecure"
-      "-ltraefik.http.routers.whoami.tls=true"
-      "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
-      "--net=host"
-      "--pid=host"
-    ];
-    cmd = [
-      "--path.rootfs=/host"
-    ];
+  services.prometheus.exporters.node = {
+    enable = true;
   };
 
   environment.etc."/prometheus/prometheus.yml".text = ''
-    
+    global:
+      scrape_interval: 15s
+
+    scrape_configs:
+      - job_name: 'node_exporter'
+        scrape_interval: 5s
+        static_configs:
+          - targets: [ 'saturn.haenoe.party:9100' ]
   '';
 }
 
