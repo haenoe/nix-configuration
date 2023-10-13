@@ -36,7 +36,7 @@
     dependsOn = [ "traefik" ];
     extraOptions = [
       "-ltraefik.enable=true"
-      "-ltraefik.http.routers.whoami.rule=Host(`whoami.${hostInformation.address}.haenoe.party`)"
+      "-ltraefik.http.routers.whoami.rule=Host(`whoami.${hostName}.haenoe.party`)"
       "-ltraefik.http.routers.whoami.entrypoints=websecure"
       "-ltraefik.http.routers.whoami.tls=true"
       "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
