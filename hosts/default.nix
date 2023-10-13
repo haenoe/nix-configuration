@@ -14,7 +14,7 @@ let
     };
     saturn = {
       mainUser = "haenoe";
-      address = "";
+      address = "100.107.69.134";
       system = "x84_64-linux";
     };
   };
