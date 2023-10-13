@@ -5,7 +5,7 @@
     image = "louislam/uptime-kuma:1.23.2-alpine";
     dependsOn = [ "traefik" ];
     volumes = [
-      "uptimekuma/app/data"
+      "uptimekuma:/app/data"
     ];
     extraOptions = [
       "-ltraefik.enable=true"
