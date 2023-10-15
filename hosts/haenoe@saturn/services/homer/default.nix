@@ -13,6 +13,7 @@
       "-ltraefik.http.routers.homer.entrypoints=websecure"
       "-ltraefik.http.routers.homer.tls=true"
       "-ltraefik.http.routers.homer.tls.certresolver=cfresolver"
+      "--network=internal"
     ];
   };
 
