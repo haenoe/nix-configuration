@@ -8,6 +8,7 @@
       ./services/uptimekuma.nix
       ./services/grafana.nix
       ./services/prometheus.nix
+      ./services/homepage.nix
       ./services/homer
     ];
 
