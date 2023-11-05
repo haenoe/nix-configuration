@@ -33,7 +33,7 @@
         enable = true;
         extraOptions = [ "-m -1" ];
         keybindings = {
-          "alt + Return" = "alacritty";
+          "alt + Return" = "wezterm";
           "alt + space" = "${pkgs.rofi}/bin/rofi -show drun";
           "alt + q" = "${pkgs.bspwm}/bin/bspc node -c";
           "alt + {_, shift +} + {a,o,e,u}" = "${pkgs.bspwm}/bin/bspc {desktop -f, node -d} {1-4}";
