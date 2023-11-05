@@ -1,4 +1,4 @@
-{ self, home-manager, inputs, nur }:
+{ home-manager, inputs, nur, agenix }:
 let
   lib = inputs.nixpkgs.lib;
   hosts = {
@@ -25,6 +25,7 @@ lib.mapAttrs
       (./. + "/${mainUser}@${hostName}")
       ../modules/core.nix
       nur.nixosModules.nur
+      agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
         home-manager = {

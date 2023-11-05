@@ -10,18 +10,25 @@
     flake-utils.url = "github:numtide/flake-utils";
     deploy-rs = {
       url = "github:serokell/deploy-rs";
-      inputs = { 
+      inputs = {
         nixpkgs.follows = "nixpkgs";
         utils.follows = "flake-utils";
       };
     };
     nur.url = "github:nix-community/NUR";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, ... } @ inputs:
     {
       nixosConfigurations = (import ./hosts {
-        inherit self home-manager inputs nur;
+        inherit home-manager inputs nur agenix;
       });
       deploy = {
         user = "root";
