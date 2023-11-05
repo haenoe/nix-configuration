@@ -10,6 +10,7 @@
       ./zsh.nix
       ./picom.nix
       ./polybar.nix
+      ./gtk.nix
       ./xdg.nix
       ./neovim
     ];
