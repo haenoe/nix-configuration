@@ -1,17 +1,17 @@
 { ... }:
 {
-  services.wezterm = {
+  programs.wezterm = {
     enable = true;
     extraConfig = ''
       local wezterm = require('wezterm')
 
-      local config = {}
+      local config = wezterm.config_builder()
 
-      config.font = wezterm.font 'Iosevka Term Nerd Font Mono'
-      config.font_size = 16.0
+      config.use_fancy_tab_bar = false 
+      config.font = wezterm.font 'Iosevka Term Nerd Font'
+      config.font_size = 12.0
 
       config.color_scheme = 'Gruber (base16)'
-      config.key_map_preference = 'Physical'
 
       return config
     '';

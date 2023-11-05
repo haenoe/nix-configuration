@@ -6,6 +6,7 @@
       ./rofi.nix
       ./firefox.nix
       ./chromium.nix
+      ./wezterm.nix
       ./zsh.nix
       ./picom.nix
       ./polybar.nix
