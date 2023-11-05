@@ -42,7 +42,8 @@
     environment = {
       PAPERLESS_REDIS = "redis://redis.paperless-ngx.${hostName}.internal:6379";
       PAPERLESS_DBHOST = "postgres.paperless-ngx.${hostName}.internal";
-      PAPERLESS_TIKA_ENABLED = 1;
+      PAPERLESS_URL = "https://paperless-ngx.${hostName}.haenoe.party";
+      PAPERLESS_TIKA_ENABLED = "1";
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://gotenberg.paperless-ngx.${hostName}.internal";
       PAPERLESS_TIKA_ENDPOINT = "http://tika.paperless-ngx.${hostName}.internal";
     };
@@ -52,10 +53,10 @@
     ];
     extraOptions = [
       "-ltraefik.enable=true"
-      "-ltraefik.http.routers.uptimekuma.rule=Host(`paperless-ngx.${hostName}.haenoe.party`)"
-      "-ltraefik.http.routers.uptimekuma.entrypoints=websecure"
-      "-ltraefik.http.routers.uptimekuma.tls=true"
-      "-ltraefik.http.routers.uptimekuma.tls.certresolver=cfresolver"
+      "-ltraefik.http.routers.paperless-ngx.rule=Host(`paperless-ngx.${hostName}.haenoe.party`)"
+      "-ltraefik.http.routers.paperless-ngx.entrypoints=websecure"
+      "-ltraefik.http.routers.paperless-ngx.tls=true"
+      "-ltraefik.http.routers.paperless-ngx.tls.certresolver=cfresolver"
       "--network=internal"
     ];
   };
