@@ -9,6 +9,7 @@
       ./services/grafana.nix
       ./services/prometheus.nix
       ./services/homepage.nix
+      ./services/gotify.nix
       ./services/paperless-ngx.nix
       ./services/homer
     ];

@@ -10,9 +10,12 @@
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.gotify.rule" = "Host(`gotify.${hostName}.haenoe.party`)";
-      "-ltraefik.http.routers.gotify.entrypoints" = "websecure";
-      "-ltraefik.http.routers.gotify.tls" = "true";
-      "-ltraefik.http.routers.gotify.tls.certresolver" = "cfresolver";
+      "traefik.http.routers.gotify.entrypoints" = "websecure";
+      "traefik.http.routers.gotify.tls" = "true";
+      "traefik.http.routers.gotify.tls.certresolver" = "cfresolver";
+    };
+    environment = {
+      TZ = "Europe/Berlin";
     };
     extraOptions = [
       "--network=internal"
