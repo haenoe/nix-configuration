@@ -133,6 +133,12 @@ return {
       settings = servers['nil_ls'],
     }
 
+    require('lspconfig')['rust_analyzer'].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers['rust_analyzer'],
+    }
+
     mason_lspconfig.setup_handlers {
       function(server_name)
         -- if server_name == "rust_analyzer" then
