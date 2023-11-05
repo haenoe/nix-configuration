@@ -21,10 +21,18 @@
 
   services.xserver.xkbVariant = lib.mkForce "dvorak";
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  sound.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
 
-  environment.systemPackages = [ pkgs.fd pkgs.alacritty pkgs.neovim ];
+  environment.systemPackages = with pkgs; [ fd alacritty neovim pavucontrol ];
 
   networking.networkmanager.enable = true;
 
