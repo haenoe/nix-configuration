@@ -29,14 +29,6 @@
   environment.etc."/homepage/services.yaml" = {
     text = ''
       - Monitoring:
-        - Grafana:
-            icon: grafana.png
-            href: https://grafana.saturn.haenoe.party
-            description: Analytics and visualizations
-        - Uptime Kuma:
-            icon: uptime-kuma.png
-            href: https://uptimekuma.saturn.haenoe.party
-            description: Uptime and monitoring
         - Traefik:
             icon: traefik.png
             href: https://traefik.saturn.haenoe.party
@@ -44,6 +36,44 @@
             widget:
               type: traefik
               url: https://traefik.saturn.haenoe.party
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.saturn.haenoe.party
+            description: Analytics and visualizations
+        - Prometheus:
+            icon: prometheus.png
+            href: https://prometheus.saturn.haenoe.party
+            description: Metrics collection
+        - Uptime Kuma:
+            icon: uptime-kuma.png
+            href: https://uptimekuma.saturn.haenoe.party
+            description: Uptime and monitoring
+        - Gotify:
+            icon: gotify.png
+            href: https://gotify.saturn.haenoe.party
+            description: Notification server
+      - Management:
+        - Paperless NGX:
+            icon: paperless-ngx.png
+            href: https://paperless-ngx.saturn.haenoe.party
+            description: Document management
+        - Stirling PDF:
+            icon: stirling-pdf.png
+            href: https://stirling-pdf.saturn.haenoe.party
+            description: PDF mangler
+        - Actual Budget:
+            icon: actual.png
+            href: https://actual.saturn.haenoe.party
+            description: Financial management
+        - Vaultwarden:
+            icon: vaultwarden-light.png
+            href: https://vault.pluto.haenoe.party
+            description: Password manager
+      - External:
+        - Nextcloud:
+            icon: nextcloud.png
+            href: https://cloud.ext.haenoe.party
+            description: Files, contacts, calendars, ...
     '';
     mode = "0440";
   };
