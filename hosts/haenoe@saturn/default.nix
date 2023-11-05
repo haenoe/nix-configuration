@@ -11,6 +11,7 @@
       ./services/homepage.nix
       ./services/gotify.nix
       ./services/paperless-ngx.nix
+      ./services/actual.nix
       ./services/homer
     ];
 
