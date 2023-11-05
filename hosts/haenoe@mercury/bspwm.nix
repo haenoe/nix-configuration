@@ -38,6 +38,7 @@
           "alt + q" = "${pkgs.bspwm}/bin/bspc node -c";
           "alt + {_, shift +} + {a,o,e,u}" = "${pkgs.bspwm}/bin/bspc {desktop -f, node -d} {1-4}";
           "alt + {_, shift +} + {h,j,k,l}" = "${pkgs.bspwm}/bin/bspc node -{f,s} {west,south,north,east}";
+          "super + {t,shift + t,s,f}" = "${pkgs.bspwm}/bin/bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
         };
       };
     };
