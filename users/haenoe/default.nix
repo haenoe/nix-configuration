@@ -12,6 +12,7 @@
       ./polybar.nix
       ./gtk.nix
       ./xdg.nix
+      ./ssh.nix
       ./neovim
     ];
     home = {
