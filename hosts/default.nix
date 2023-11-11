@@ -1,4 +1,4 @@
-{ home-manager, inputs, nur, agenix }:
+{ home-manager, inputs, nur, agenix, nixpkgs }:
 let
   lib = inputs.nixpkgs.lib;
   hosts = {
@@ -27,6 +27,9 @@ lib.mapAttrs
       nur.nixosModules.nur
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
+      {
+        nix.registry.nixpkgs.flake = nixpkgs;
+      }
       {
         home-manager = {
           useGlobalPkgs = true;

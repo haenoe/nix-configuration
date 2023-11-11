@@ -28,7 +28,7 @@
   outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, ... } @ inputs:
     {
       nixosConfigurations = (import ./hosts {
-        inherit home-manager inputs nur agenix;
+        inherit home-manager inputs nur agenix nixpkgs;
       });
       deploy = {
         user = "root";
