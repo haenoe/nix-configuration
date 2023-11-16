@@ -1,23 +1,6 @@
-{ home-manager, inputs, nur, agenix, nixpkgs }:
+{ self, home-manager, inputs, nur, agenix, nixpkgs }:
 let
   lib = inputs.nixpkgs.lib;
-  hosts = {
-    mercury = {
-      mainUser = "haenoe";
-      address = "";
-      system = "x86_64-linux";
-    };
-    pluto = {
-      mainUser = "haenoe";
-      address = "";
-      system = "aarch64-linux";
-    };
-    saturn = {
-      mainUser = "haenoe";
-      address = "100.107.69.134";
-      system = "x84_64-linux";
-    };
-  };
 in
 lib.mapAttrs
   (hostName: { mainUser, ... } @ hostInformation: lib.nixosSystem {
@@ -42,4 +25,4 @@ lib.mapAttrs
       inherit hostInformation hostName home-manager;
     };
   })
-  hosts
+  (lib.attrsets.filterAttrs (_: v: v.type == "nixos") self.hosts)

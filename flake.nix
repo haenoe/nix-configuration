@@ -27,10 +27,27 @@
 
   outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, ... } @ inputs:
     {
-      nixosConfigurations = (import ./hosts {
-        inherit home-manager inputs nur agenix nixpkgs;
-      });
+      hosts = {
+        mercury = {
+          mainUser = "haenoe";
+          system = "x86_64-linux";
+          type = "nixos";
         };
+        pluto = {
+          mainUser = "haenoe";
+          system = "aarch64-linux";
+          type = "nixos";
+        };
+        saturn = {
+          mainUser = "haenoe";
+          address = "100.107.69.134";
+          system = "x84_64-linux";
+          type = "nixos";
+        };
+      };
+      nixosConfigurations = import ./hosts/nixos.nix {
+        inherit self home-manager inputs nur agenix nixpkgs;
+      };
       deploy = import ./hosts/deploy.nix {
         inherit deploy-rs self;
       };
