@@ -1,15 +1,21 @@
 { mainUser, ... }:
 {
-  home.username = mainUser;
-  home.homeDirectory = "/Users/${mainUser}";
+  imports = [ 
+    ../../users/${mainUser}
+  ];
 
-  home.stateVersion = "23.05";
+  home = {
+    username = mainUser;
+    homeDirectory = "/Users/${mainUser}";
 
-  home.packages = [ ];
+    stateVersion = "23.05";
 
-  home.file = { };
+    packages = [ ];
 
-  home.sessionVariables = { };
+    file = { };
+
+    sessionVariables = { };
+  };
 
   programs.home-manager.enable = true;
 }
