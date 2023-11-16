@@ -3,7 +3,11 @@ let
   systems = [
     mercury
   ];
+  haenoe = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5laWkCjzbloX88KuPDJprh9AkHAFnPUGfEuTZyxjtp";
+  users = [
+    haenoe
+  ];
 in
 {
-  "secret1.age".publicKeys = systems;
+  "hosts/haenoe@mercury/repository-key.age".publicKeys = systems ++ users;
 }

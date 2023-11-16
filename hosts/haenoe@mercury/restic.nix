@@ -1,16 +1,32 @@
-{ ... }:
+{ pkgs, config, ... }:
 {
+  age.secrets.repository-key = {
+    file = ./repository-key.age;
+    owner = "haenoe";
+  };
+
   services.restic.backups = {
     remote = {
       initialize = true;
-      paths = [ "/home/haenoe" ];
+      paths = [
+        "/home/haenoe"
+      ];
+      exclude = [
+        "/home/haenoe/backup"
+        "/home/haenoe/isos"
+      ];
       extraBackupArgs = [ "--exclude-caches" ];
-      repositoryFile = "sftp:u350984@u350984.your-storagebox.de:/test-backup-nixos";
-      passwordFile = "/home/haenoe/password-file";
+      user = "haenoe";
+      repository = "sftp:u350984-sub4@storagebox:/home/system-backup";
+      passwordFile = config.age.secrets.repository-key.path;
       backupCleanupCommand = ''
-        echo 'exit-code' $EXIT_CODE
-        echo 'exit-status' $EXIT_STATUS
-        # curl https://uptimekuma.saturn.haenoe.party/api/push/vb3ZXK6W8i?status=up&msg=OK&ping=
+        UPTIME_KUMA_STATUS="down"
+
+        if [ "$EXIT_CODE" = "0" ]; then
+          UPTIME_KUMA_STATUS="up"
+        fi
+
+        ${pkgs.curl}/bin/curl --fail --no-progress-meter --retry 3 "https://uptimekuma.saturn.haenoe.party/api/push/vb3ZXK6W8i?status=$uptime_kuma_status&msg=OK&ping="
       '';
       timerConfig = {
         OnCalendar = "daily";

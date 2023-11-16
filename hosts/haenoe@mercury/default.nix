@@ -2,6 +2,7 @@
 {
   imports = [
     ./bspwm.nix
+    ./restic.nix
     ../../users/${hostInformation.mainUser}
     ../../modules/syncthing.nix
     ./hardware-configuration.nix
