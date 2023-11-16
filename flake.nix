@@ -44,9 +44,17 @@
           system = "x84_64-linux";
           type = "nixos";
         };
+        mars = {
+          mainUser = "i588211";
+          system = "aarch64-darwin";
+          type = "home-manager";
+        };
       };
       nixosConfigurations = import ./hosts/nixos.nix {
         inherit self home-manager inputs nur agenix nixpkgs;
+      };
+      homeConfigurations = import ./hosts/home-manager.nix {
+        inherit self home-manager inputs nixpkgs;
       };
       deploy = import ./hosts/deploy.nix {
         inherit deploy-rs self;
