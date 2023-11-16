@@ -28,6 +28,22 @@
   #   };
   # };
 
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+
+  networking.wireguard.interfaces.cloud = {
+    ips = [ "192.168.177.2/24" ];
+    listenPort = 51820;
+    privateKeyFile = "/home/haenoe/wg-keys/private";
+    mtu = 1384;
+    peers = [
+      {
+        publicKey = "O3M3xHYIheQ29wSqG5NXN2GfSLG0QYmLRCIaiAgNHSo=";
+        allowedIPs = [ "192.168.177.0/24" ];
+        endpoint = "202.61.236.225:51820";
+      }
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     pkgs.pcmanfm
     pkgs.obsidian

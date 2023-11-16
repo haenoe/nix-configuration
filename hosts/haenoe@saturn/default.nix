@@ -20,6 +20,25 @@
 
   networking.hostName = "saturn";
 
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+
+  networking.wireguard.interfaces.cloud = {
+    ips = [ "192.168.177.1/24" ];
+    listenPort = 51820;
+    privateKeyFile = "/home/haenoe/wg-keys/private";
+    mtu = 1420;
+    peers = [
+      {
+        publicKey = "9UiO9DKg9CO0zdSQDHq6PA6dbApIpHWsvl4oKHhkaks=";
+        allowedIPs = [ "192.168.177.2/32" ];
+      }
+      {
+        publicKey = "78+iMco6H37Wt6wNoL8qaUu6JdKsTucm+ylo2DxFuQ0=";
+        allowedIPs = [ "192.168.177.3/32" ];
+      }
+    ];
+  };
+
   virtualisation = {
     docker = {
       enable = true;
