@@ -6,14 +6,14 @@
       ./rofi.nix
       ./firefox.nix
       ./chromium.nix
-      ./wezterm.nix
-      ./zsh.nix
+      ../shared/wezterm.nix
+      ../shared/zsh.nix
       ./picom.nix
       ./polybar.nix
       ./gtk.nix
       ./xdg.nix
       ./ssh.nix
-      ./neovim
+      ../shared/neovim
     ];
     home = {
       username = "haenoe";
