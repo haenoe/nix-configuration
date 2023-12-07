@@ -1,38 +1,29 @@
 return {
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  "tpope/vim-sleuth",
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { "folke/which-key.nvim",  opts = {} },
 
   {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
+    "nvim-lualine/lualine.nvim",
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'auto',
-        component_separators = '|',
-        section_separators = '',
+        theme = "auto",
+        component_separators = "|",
+        section_separators = "",
       },
     },
   },
 
   {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    "lukas-reineke/indent-blankline.nvim",
     opts = {
-      char = '┊',
+      char = "┊",
       show_trailing_blankline_indent = false,
-      -- show_end_of_line = true,
     },
   },
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { "numToStr/Comment.nvim", opts = {} },
 
   {
     "folke/todo-comments.nvim",
