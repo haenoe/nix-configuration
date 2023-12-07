@@ -1,8 +1,6 @@
 return {
   "tpope/vim-sleuth",
-
   { "folke/which-key.nvim",  opts = {} },
-
   {
     "nvim-lualine/lualine.nvim",
     opts = {
@@ -14,7 +12,6 @@ return {
       },
     },
   },
-
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -22,12 +19,11 @@ return {
       show_trailing_blankline_indent = false,
     },
   },
-
   { "numToStr/Comment.nvim", opts = {} },
-
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
+  { 'echasnovski/mini.pairs', version = false, opts = {} },
 }
