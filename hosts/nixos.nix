@@ -1,4 +1,4 @@
-{ self, home-manager, inputs, nur, agenix, nixpkgs }:
+{ self, home-manager, inputs, nur, agenix, nixpkgs, nix-index-database }:
 let
   lib = inputs.nixpkgs.lib;
 in
@@ -10,6 +10,10 @@ lib.mapAttrs
       nur.nixosModules.nur
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
+      nix-index-database.nixosModules.nix-index
+      {
+        programs.command-not-found.enable = false;
+      }
       {
         nix.registry.nixpkgs.flake = nixpkgs;
       }

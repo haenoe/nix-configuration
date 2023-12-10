@@ -23,9 +23,13 @@
         home-manager.follows = "home-manager";
       };
     };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, nix-index-database, ... } @ inputs:
     {
       hosts = {
         mercury = {
@@ -51,7 +55,7 @@
         };
       };
       nixosConfigurations = import ./hosts/nixos.nix {
-        inherit self home-manager inputs nur agenix nixpkgs;
+        inherit self home-manager inputs nur agenix nixpkgs nix-index-database;
       };
       homeConfigurations = import ./hosts/home-manager.nix {
         inherit self home-manager inputs nixpkgs;
