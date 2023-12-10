@@ -1,10 +1,10 @@
 { config, hostInformation, pkgs, ... }:
 {
   imports = [
-    ./bspwm.nix
     ./restic.nix
     ../../users/${hostInformation.mainUser}
     ../../modules/syncthing.nix
+    ../../modules/bspwm.nix
     ./hardware-configuration.nix
   ];
 
