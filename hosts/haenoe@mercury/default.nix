@@ -40,8 +40,6 @@
     enable = true;
   };
 
-  programs.nix-ld.enable = true;
-
   networking.firewall.allowedUDPPorts = [ 51820 ];
 
   networking.wireguard.interfaces.cloud = {
@@ -82,19 +80,9 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  networking.hostName = "mercury";
-
   services.openssh.enable = true;
 
-  users.users.haenoe = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+  users.users.${hostInformation.mainUser} = {
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdmY6zsT3hIn8S/NAfhvOfDcCd5BINhstTamPTc/fA9 max.mechler@sap.com" ];
-  };
-
-  security.sudo.wheelNeedsPassword = false;
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "root" "@wheel" ];
   };
 }

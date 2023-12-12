@@ -6,27 +6,19 @@ lib.mapAttrs
   (hostName: { mainUser, ... } @ hostInformation: lib.nixosSystem {
     modules = [
       (./. + "/${mainUser}@${hostName}")
-      ../modules/core.nix
-      nur.nixosModules.nur
-      agenix.nixosModules.default
-      home-manager.nixosModules.home-manager
-      nix-index-database.nixosModules.nix-index
-      {
-        programs.command-not-found.enable = false;
-      }
+      ../modules/nixos-core.nix
       {
         nix.registry.nixpkgs.flake = nixpkgs;
       }
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = { };
-        };
-      }
     ];
     specialArgs = {
-      inherit hostInformation hostName home-manager;
+      inherit
+        hostInformation
+        hostName
+        home-manager
+        nur
+        agenix
+        nix-index-database;
     };
   })
   (lib.attrsets.filterAttrs (_: v: v.type == "nixos") self.hosts)

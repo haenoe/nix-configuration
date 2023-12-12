@@ -1,4 +1,4 @@
-{ ... }:
+{ hostInformation, ... }:
 
 {
   imports =
@@ -14,6 +14,19 @@
       ./services/actual.nix
       ./services/homer
     ];
+
+  home-manager.users.${hostInformation.mainUser} = {
+    imports = map (module: ../../modules/dotfiles + "${module}") [
+      "/git.nix"
+      "/direnv.nix"
+      "/zsh.nix"
+    ];
+    home = {
+      username = hostInformation.mainUser;
+      homeDirectory = "/home/${hostInformation.mainUser}";
+      stateVersion = "23.05";
+    };
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -49,7 +62,7 @@
   };
 
   users.users.haenoe = {
-    isNormalUser = true;
+    # isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5laWkCjzbloX88KuPDJprh9AkHAFnPUGfEuTZyxjtp haenoe@mercury" ];
   };
