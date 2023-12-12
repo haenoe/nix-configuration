@@ -32,8 +32,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pkgs.pcmanfm
-    pkgs.obsidian
+    pcmanfm
+    obsidian
+    discord
+    jetbrains.clion
+    zotero
   ];
 
   programs.kdeconnect = {
