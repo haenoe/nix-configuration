@@ -13,6 +13,10 @@
 
   boot.tmp.useTmpfs = true;
 
+  services.prometheus.exporters.node = {
+    enable = true;
+  };
+
   programs.nix-ld.enable = true;
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
