@@ -6,6 +6,7 @@
       ./rofi.nix
       ./firefox.nix
       ./chromium.nix
+      ./direnv.nix
       ../shared/wezterm.nix
       ../shared/zsh.nix
       ./picom.nix
