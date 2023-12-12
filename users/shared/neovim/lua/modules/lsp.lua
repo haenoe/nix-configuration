@@ -46,6 +46,7 @@ return {
     end
 
     local servers = {
+      rust_analyzer = {},
       clangd = {},
       gopls = {},
       lua_ls = {
@@ -69,7 +70,7 @@ return {
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
     for server, settings in pairs(servers) do
-      if server == "rust-analyzer" then
+      if server == "rust_analyzer" then
         require("rust-tools").setup({
           server = {
             capabilities = capabilities,
@@ -77,6 +78,7 @@ return {
             settings = settings,
           },
         })
+        require("rust-tools").inlay_hints.enable()
       else
         require("lspconfig")[server].setup({
           capabilities = capabilities,
