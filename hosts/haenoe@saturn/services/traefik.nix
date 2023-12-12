@@ -1,5 +1,10 @@
 { lib, config, hostName, hostInformation, ... }:
 {
+  age.secrets.cloudflare-api-key = {
+    file = ../cloudflare-api-key.age;
+    owner = "haenoe";
+  };
+
   virtualisation.oci-containers.containers.traefik = {
     autoStart = true;
     image = "traefik:v2.10";
@@ -17,16 +22,23 @@
       "--certificatesresolvers.cfresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53"
       "--certificatesresolvers.cfresolver.acme.dnschallenge.provider=cloudflare"
     ];
-    environment = { };
+    environment = {
+      CF_API_EMAIL = "programmierhaenoe@outlook.de";
+    };
+    environmentFiles = [
+      config.age.secrets.cloudflare-api-key.path
+    ];
     ports = [ "${hostInformation.address}:80:80" "${hostInformation.address}:443:443" ];
     volumes = [ "/run/docker.sock:/var/run/docker.sock:ro" "/etc/traefik/letsencrypt:/letsencrypt" ];
+    labels = {
+      "traefik.enable" = "true";
+      "traefik.http.routers.dashboard.rule" = "Host(`traefik.${hostName}.haenoe.party`)";
+      "traefik.http.routers.dashboard.service" = "api@internal";
+      "traefik.http.routers.dashboard.entrypoints" = "websecure";
+      "traefik.http.routers.dashboard.tls" = "true";
+      "traefik.http.routers.dashboard.tls.certresolver" = "cfresolver";
+    };
     extraOptions = [
-      "-ltraefik.enable=true"
-      "-ltraefik.http.routers.dashboard.rule=Host(`traefik.${hostName}.haenoe.party`)"
-      "-ltraefik.http.routers.dashboard.service=api@internal"
-      "-ltraefik.http.routers.dashboard.entrypoints=websecure"
-      "-ltraefik.http.routers.dashboard.tls=true"
-      "-ltraefik.http.routers.dashboard.tls.certresolver=cfresolver"
       "--network=internal"
       "--hostname=traefik.saturn.docker.internal"
     ];
@@ -55,12 +67,12 @@
     autoStart = true;
     image = "traefik/whoami";
     dependsOn = [ "traefik" ];
-    extraOptions = [
-      "-ltraefik.enable=true"
-      "-ltraefik.http.routers.whoami.rule=Host(`whoami.${hostName}.haenoe.party`)"
-      "-ltraefik.http.routers.whoami.entrypoints=websecure"
-      "-ltraefik.http.routers.whoami.tls=true"
-      "-ltraefik.http.routers.whoami.tls.certresolver=cfresolver"
-    ];
+    labels = {
+      "traefik.enable" = "true";
+      "traefik.http.routers.whoami.rule" = "Host(`whoami.${hostName}.haenoe.party`)";
+      "traefik.http.routers.whoami.entrypoints" = "websecure";
+      "traefik.http.routers.whoami.tls" = "true";
+      "traefik.http.routers.whoami.tls.certresolver" = "cfresolver";
+    };
   };
 }
