@@ -1,10 +1,10 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   fonts = {
     fontconfig.enable = true;
-    enableDefaultPackages= true;
+    enableDefaultPackages = true;
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "IosevkaTerm" ]; })
+      (nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" ]; })
     ];
   };
 }
