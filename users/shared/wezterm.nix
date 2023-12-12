@@ -8,7 +8,7 @@
       local config = wezterm.config_builder()
 
       config.use_fancy_tab_bar = false 
-      config.font = wezterm.font 'Iosevka Term Nerd Font'
+      config.font = wezterm.font 'IosevkaTerm NFM'
       config.font_size = 12.0
 
       config.color_scheme = 'Gruber (base16)'
