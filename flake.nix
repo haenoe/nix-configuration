@@ -35,22 +35,26 @@
         mercury = {
           mainUser = "haenoe";
           system = "x86_64-linux";
+          deploy = false;
           type = "nixos";
         };
         pluto = {
           mainUser = "haenoe";
           system = "aarch64-linux";
+          deploy = false;
           type = "nixos";
         };
         saturn = {
           mainUser = "haenoe";
           address = "100.107.69.134";
-          system = "x84_64-linux";
+          system = "x86_64-linux";
+          deploy = true;
           type = "nixos";
         };
         mars = {
           mainUser = "i588211";
           system = "aarch64-darwin";
+          deploy = false;
           type = "home-manager";
         };
       };
@@ -61,7 +65,7 @@
         inherit self home-manager inputs nixpkgs;
       };
       deploy = import ./hosts/deploy.nix {
-        inherit deploy-rs self;
+        inherit self inputs deploy-rs;
       };
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };

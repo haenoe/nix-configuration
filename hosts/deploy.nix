@@ -1,20 +1,19 @@
-{ deploy-rs, self }:
+{ self, deploy-rs, inputs }:
+let
+  lib = inputs.nixpkgs.lib;
+in
 {
   user = "root";
-  # remoteBuild = true;
   autoRollback = false;
-  nodes = {
-    mercury = {
-      hostname = "192.168.122.144";
-      profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mercury;
-    };
-    saturn = {
-      hostname = "202.61.236.225";
-      profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.saturn;
-    };
-    # pluto = {
-    #   hostname = "192.168.178.71";
-    #   profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.pluto;
-    # };
-  };
+  nodes = lib.mapAttrs
+    (hostName: { address, system, mainUser, ... }:
+      {
+        hostname = address;
+        profiles.system = {
+          sshUser = mainUser;
+          path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${hostName};
+        };
+      }
+    )
+    (lib.attrsets.filterAttrs (_: v: v.deploy == true) self.hosts);
 }
