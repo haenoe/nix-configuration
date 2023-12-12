@@ -36,6 +36,10 @@
     pkgs.obsidian
   ];
 
+  programs.kdeconnect = {
+    enable = true;
+  };
+
   services.tailscale.enable = true;
 
   # Nvidia GPU specific config  
