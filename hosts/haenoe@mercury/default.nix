@@ -8,25 +8,11 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.tmp.useTmpfs = true;
 
-  # Boot config
-  # boot.loader = {
-  #   efi = {
-  #     canTouchEfiVariables = true;
-  #     efiSysMountPoint = "/boot";
-  #   };
-  #   grub = {
-  #     enable = true;
-  #     efiSupport = true;
-  #     useOSProber = true;
-  #     devices = [ "nodev" ];
-  #   };
-  # };
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
 
