@@ -2,11 +2,34 @@
 {
   imports = [
     ./restic.nix
-    ../../users/${hostInformation.mainUser}
     ../../modules/syncthing.nix
     ../../modules/bspwm.nix
     ./hardware-configuration.nix
   ];
+
+  home-manager.users.${hostInformation.mainUser} = {
+    imports = map (module: ../../modules/dotfiles + "${module}") [
+      "/alacritty.nix"
+      "/git.nix"
+      "/rofi.nix"
+      "/firefox.nix"
+      "/chromium.nix"
+      "/direnv.nix"
+      "/wezterm.nix"
+      "/zsh.nix"
+      "/picom.nix"
+      "/polybar.nix"
+      "/gtk.nix"
+      "/xdg.nix"
+      "/ssh.nix"
+      "/neovim"
+    ];
+    home = {
+      username = hostInformation.mainUser;
+      homeDirectory = "/home/${hostInformation.mainUser}";
+      stateVersion = "23.05";
+    };
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

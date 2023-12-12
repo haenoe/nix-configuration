@@ -1,7 +1,11 @@
 { mainUser, ... }:
 {
-  imports = [ 
-    ../../users/${mainUser}
+  imports = map (module: ../../modules/dotfiles + "${module}") [
+    "/direnv.nix"
+    "/wezterm.nix"
+    "/zsh.nix"
+    "/ssh.nix"
+    "/neovim"
   ];
 
   home = {
