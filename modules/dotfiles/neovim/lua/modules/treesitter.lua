@@ -2,6 +2,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        'nvim-treesitter/nvim-treesitter-context',
     },
     build = ":TSUpdate",
     config = function()
@@ -11,7 +12,7 @@ return {
                 "markdown",
                 "markdown_inline", "yaml" },
             auto_install = true,
-            -- highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" }, },
+            highlight = { enable = true },
             indent = { enable = true, disable = { "python" } },
             incremental_selection = {
                 enable = true,
@@ -66,5 +67,9 @@ return {
                 },
             },
         })
+
+        vim.o.foldmethod = "expr"
+        vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+        vim.o.foldenable = false
     end,
 }
