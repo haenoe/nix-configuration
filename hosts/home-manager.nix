@@ -9,6 +9,7 @@ lib.mapAttrs
       (./. + "/${mainUser}@${hostName}")
       {
         nix.registry.nixpkgs.flake = nixpkgs;
+        nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
       }
     ];
     extraSpecialArgs = {

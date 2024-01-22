@@ -8,6 +8,7 @@ lib.mapAttrs
       (./. + "/${mainUser}@${hostName}")
       ../modules/nixos-core.nix
       {
+        nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
         nix.registry.nixpkgs.flake = nixpkgs;
       }
     ];
