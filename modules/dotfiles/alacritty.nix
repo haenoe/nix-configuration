@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -6,8 +6,8 @@
         TERM = "xterm-256color";
       };
       font = {
-        size = 11.00;
-        normal.family = "Iosevka Term Nerd Font";
+        size = lib.mkDefault 11.00;
+        normal.family = lib.mkDefault "Iosevka Term Nerd Font";
       };
       window = {
         padding = {

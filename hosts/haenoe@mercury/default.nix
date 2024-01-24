@@ -1,10 +1,13 @@
-{ config, hostInformation, pkgs, ... }:
+{ config, hostInformation, pkgs, nixos-hardware, stylix, ... }:
 {
   imports = [
     ./restic.nix
     ../../modules/syncthing.nix
     ../../modules/bspwm.nix
     ./hardware-configuration.nix
+    nixos-hardware.nixosModules.common-cpu-amd
+    nixos-hardware.nixosModules.common-pc-ssd
+    stylix.nixosModules.stylix
   ];
 
   home-manager.users.${hostInformation.mainUser} = {
@@ -33,6 +36,13 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  stylix.image = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/f07707cecfd89bc1459d5dad76a3a4c5315efba1/wallpapers/nix-wallpaper-nineish-dark-gray.png";
+    sha256 = "sha256-nhIUtCy/Hb8UbuxXeL3l3FMausjQrnjTVi1B3GkL9B8=";
+  };
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/embers.yaml";
 
   boot.tmp.useTmpfs = true;
 

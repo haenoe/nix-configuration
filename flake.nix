@@ -28,9 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, nix-index-database, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, nix-index-database, nixos-hardware, stylix, neovim-nightly-overlay, ... } @ inputs:
     {
       hosts = {
         mercury = {
@@ -41,8 +43,9 @@
         };
         pluto = {
           mainUser = "haenoe";
+          address = "192.168.178.71";
           system = "aarch64-linux";
-          deploy = false;
+          deploy = true;
           type = "nixos";
         };
         saturn = {
@@ -60,7 +63,17 @@
         };
       };
       nixosConfigurations = import ./hosts/nixos.nix {
-        inherit self home-manager inputs nur agenix nixpkgs nix-index-database;
+        inherit
+          self
+          home-manager
+          inputs
+          nur
+          agenix
+          nixpkgs
+          nix-index-database
+          nixos-hardware
+          stylix
+          neovim-nightly-overlay;
       };
       homeConfigurations = import ./hosts/home-manager.nix {
         inherit self home-manager inputs nixpkgs;
