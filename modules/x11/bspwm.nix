@@ -1,4 +1,4 @@
-{ pkgs, hostInformation, ... }: {
+{ pkgs, hostInformation, lib, ... }: {
   services.xserver = {
     enable = true;
     windowManager.bspwm.enable = true;

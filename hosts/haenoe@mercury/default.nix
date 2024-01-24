@@ -3,7 +3,7 @@
   imports = [
     ./restic.nix
     ../../modules/syncthing.nix
-    ../../modules/bspwm.nix
+    ../../modules/x11/i3.nix
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc-ssd
