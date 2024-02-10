@@ -26,7 +26,7 @@
     xsession.enable = true;
     xsession.windowManager.i3 = {
       enable = true;
-      config = {
+      config = rec {
         modifier = "Mod1";
         terminal = lib.getExe pkgs.wezterm;
         bars = [
@@ -41,6 +41,18 @@
             trayOutput = "primary";
           }
         ];
+        keybindings = lib.mkOptionDefault
+          {
+            "${modifier}+h" = "focus left";
+            "${modifier}+j" = "focus down";
+            "${modifier}+k" = "focus up";
+            "${modifier}+l" = "focus right";
+
+            "${modifier}+Shift+h" = "move left";
+            "${modifier}+Shift+j" = "move down";
+            "${modifier}+Shift+k" = "move up";
+            "${modifier}+Shift+l" = "move right";
+          };
         gaps = {
           inner = 5;
           outer = 5;
