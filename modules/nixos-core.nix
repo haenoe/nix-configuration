@@ -27,7 +27,7 @@
     keyMap = lib.mkDefault "dvorak";
   };
 
-  services.xserver.xkbVariant = lib.mkForce "dvorak";
+  services.xserver.xkb.variant = lib.mkForce "dvorak";
 
   sound.enable = false;
   security.rtkit.enable = true;
@@ -73,7 +73,10 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+
+  # nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "23.11";
 }
