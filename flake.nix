@@ -32,7 +32,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, ... } @ inputs: {
+  outputs = {self, ...} @ inputs: {
     hosts = {
       mercury = {
         mainUser = "haenoe";
@@ -88,20 +88,18 @@
     };
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
     devShells =
-      inputs.nixpkgs.lib.genAttrs [ "x86_64-linux" ]
-        (system:
-          let
-            pkgs = inputs.nixpkgs.legacyPackages.${system};
-          in
-          {
-            default = pkgs.mkShell {
-              nativeBuildInputs = with pkgs; [
-                inputs.agenix.packages.${system}.default
-                nil
-                deploy-rs
-                nixpkgs-fmt
-              ];
-            };
-          });
+      inputs.nixpkgs.lib.genAttrs ["x86_64-linux"]
+      (system: let
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+      in {
+        default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            inputs.agenix.packages.${system}.default
+            nil
+            deploy-rs
+            alejandra
+          ];
+        };
+      });
   };
 }

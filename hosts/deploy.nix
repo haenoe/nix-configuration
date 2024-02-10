@@ -1,4 +1,4 @@
-{ self, deploy-rs, inputs }:
+{ self, inputs }:
 let
   lib = inputs.nixpkgs.lib;
 in
@@ -11,7 +11,7 @@ in
         hostname = address;
         profiles.system = {
           sshUser = mainUser;
-          path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${hostName};
+          path = inputs.deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${hostName};
         };
       }
     )
