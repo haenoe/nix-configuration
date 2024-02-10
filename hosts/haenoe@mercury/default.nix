@@ -72,6 +72,11 @@
     # discord
     jetbrains.clion
     zotero
+    etcher
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-19.1.9"
   ];
 
   programs.kdeconnect = {
