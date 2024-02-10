@@ -1,4 +1,4 @@
-{ pkgs, hostInformation, lib, ... }: {
+{ pkgs, hostInformation, lib, config, ... }: {
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 144
   '';
@@ -23,11 +23,24 @@
   };
 
   home-manager.users.${hostInformation.mainUser} = {
+    xsession.enable = true;
     xsession.windowManager.i3 = {
       enable = true;
       config = {
         modifier = "Mod1";
         terminal = lib.getExe pkgs.wezterm;
+        bars = [
+          {
+            inherit (config.home-manager.users.${hostInformation.mainUser}.lib.stylix.i3.bar) colors fonts;
+            mode = "dock";
+            hiddenState = "hide";
+            position = "bottom";
+            workspaceButtons = true;
+            workspaceNumbers = true;
+            statusCommand = "${pkgs.i3status}/bin/i3status";
+            trayOutput = "primary";
+          }
+        ];
         gaps = {
           inner = 5;
           outer = 5;

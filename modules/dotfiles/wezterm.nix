@@ -51,8 +51,6 @@
       config.font = wezterm.font 'IosevkaTerm NFM'
       config.font_size = 16.0
 
-      config.color_scheme = 'Embers (base16)'
-
       return config
     '';
   };
