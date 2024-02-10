@@ -1,9 +1,8 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   virtualisation.oci-containers.containers.homepage = {
     autoStart = true;
     image = "ghcr.io/gethomepage/homepage:v0.7.3";
-    dependsOn = [ "homepage" ];
+    dependsOn = ["homepage"];
     volumes = [
       "/etc/homepage:/app/config"
     ];
@@ -78,5 +77,3 @@
     mode = "0440";
   };
 }
-
-

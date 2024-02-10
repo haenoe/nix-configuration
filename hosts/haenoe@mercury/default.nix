@@ -1,5 +1,11 @@
-{ config, hostInformation, pkgs, nixos-hardware, stylix, ... }:
 {
+  config,
+  hostInformation,
+  pkgs,
+  nixos-hardware,
+  stylix,
+  ...
+}: {
   imports = [
     ./restic.nix
     ../../modules/syncthing.nix
@@ -36,7 +42,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   stylix.image = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/f07707cecfd89bc1459d5dad76a3a4c5315efba1/wallpapers/nix-wallpaper-nineish-dark-gray.png";
@@ -50,17 +56,17 @@
     enable = true;
   };
 
-  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.allowedUDPPorts = [51820];
 
   networking.wireguard.interfaces.cloud = {
-    ips = [ "192.168.177.2/24" ];
+    ips = ["192.168.177.2/24"];
     listenPort = 51820;
     privateKeyFile = "/home/haenoe/wg-keys/private";
     mtu = 1384;
     peers = [
       {
         publicKey = "O3M3xHYIheQ29wSqG5NXN2GfSLG0QYmLRCIaiAgNHSo=";
-        allowedIPs = [ "192.168.177.0/24" ];
+        allowedIPs = ["192.168.177.0/24"];
         endpoint = "202.61.236.225:51820";
       }
     ];
@@ -85,8 +91,8 @@
 
   services.tailscale.enable = true;
 
-  # Nvidia GPU specific config  
-  services.xserver.videoDrivers = [ "nvidia" ];
+  # Nvidia GPU specific config
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.opengl.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
@@ -98,6 +104,6 @@
   services.openssh.enable = true;
 
   users.users.${hostInformation.mainUser} = {
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdmY6zsT3hIn8S/NAfhvOfDcCd5BINhstTamPTc/fA9 max.mechler@sap.com" ];
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdmY6zsT3hIn8S/NAfhvOfDcCd5BINhstTamPTc/fA9 max.mechler@sap.com"];
   };
 }

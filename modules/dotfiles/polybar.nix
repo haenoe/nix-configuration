@@ -1,6 +1,4 @@
-{ ... }:
-
-let
+{...}: let
   colors = {
     background = "#181818";
     background-alt = "#282828";
@@ -10,12 +8,11 @@ let
     alert = "#A54242";
     disabled = "#707880";
   };
-in
-{
+in {
   services.polybar = {
     enable = true;
     script = ''
-      	  polybar &
+      polybar &
     '';
     extraConfig = ''
       [bar/example]

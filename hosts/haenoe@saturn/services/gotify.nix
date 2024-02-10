@@ -1,9 +1,8 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   virtualisation.oci-containers.containers.gotify = {
     autoStart = true;
     image = "gotify/server:2.4.0";
-    dependsOn = [ "traefik" ];
+    dependsOn = ["traefik"];
     volumes = [
       "gotify-data:/app/data"
     ];

@@ -1,9 +1,8 @@
-{ ... }:
-{
+{...}: {
   virtualisation.oci-containers.containers.homer = {
     autoStart = true;
     image = "b4bz/homer:v23.09.1";
-    dependsOn = [ "traefik" ];
+    dependsOn = ["traefik"];
     volumes = [
       "/etc/homer:/www/assets"
     ];

@@ -1,5 +1,4 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   virtualisation.oci-containers.containers.paperless-ngx-redis = {
     autoStart = true;
     image = "redis:7";

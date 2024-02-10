@@ -1,9 +1,8 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   virtualisation.oci-containers.containers.actual = {
     autoStart = true;
     image = "ghcr.io/actualbudget/actual-server:23.10.0";
-    dependsOn = [ "traefik" ];
+    dependsOn = ["traefik"];
     volumes = [
       "actual-data:/data"
     ];

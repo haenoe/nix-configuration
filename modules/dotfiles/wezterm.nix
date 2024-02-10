@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -46,7 +45,7 @@
         split_nav('l'),
       }
 
-      config.use_fancy_tab_bar = false 
+      config.use_fancy_tab_bar = false
 
       config.font = wezterm.font 'IosevkaTerm NFM'
       config.font_size = 16.0

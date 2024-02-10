@@ -1,9 +1,8 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   virtualisation.oci-containers.containers.prometheus = {
     autoStart = true;
     image = "prom/prometheus:v2.47.1";
-    dependsOn = [ "traefik" ];
+    dependsOn = ["traefik"];
     volumes = [
       "/etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
       "prometeus-data:/prometheus"
@@ -34,4 +33,3 @@
           - targets: [ 'saturn.haenoe.party:9100' ]
   '';
 }
-

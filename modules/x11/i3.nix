@@ -1,4 +1,10 @@
-{ pkgs, hostInformation, lib, config, ... }: {
+{
+  pkgs,
+  hostInformation,
+  lib,
+  config,
+  ...
+}: {
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 144
   '';
@@ -10,9 +16,9 @@
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -41,7 +47,8 @@
             trayOutput = "primary";
           }
         ];
-        keybindings = lib.mkOptionDefault
+        keybindings =
+          lib.mkOptionDefault
           {
             "${modifier}+h" = "focus left";
             "${modifier}+j" = "focus down";

@@ -1,5 +1,4 @@
-{ mainUser, ... }:
-{
+{mainUser, ...}: {
   imports = map (module: ../../modules/dotfiles + "${module}") [
     "/direnv.nix"
     "/wezterm.nix"
@@ -14,11 +13,11 @@
 
     stateVersion = "23.05";
 
-    packages = [ ];
+    packages = [];
 
-    file = { };
+    file = {};
 
-    sessionVariables = { };
+    sessionVariables = {};
   };
 
   programs.home-manager.enable = true;

@@ -1,4 +1,14 @@
-{ pkgs, lib, hostInformation, hostName, nur, agenix, home-manager, nix-index-database, ... }: {
+{
+  pkgs,
+  lib,
+  hostInformation,
+  hostName,
+  nur,
+  agenix,
+  home-manager,
+  nix-index-database,
+  ...
+}: {
   imports = [
     nur.nixosModules.nur
     agenix.nixosModules.default
@@ -40,7 +50,7 @@
     jack.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ fd alacritty neovim pavucontrol ];
+  environment.systemPackages = with pkgs; [fd alacritty neovim pavucontrol];
 
   networking = {
     inherit hostName;
@@ -51,7 +61,7 @@
 
   users.users.${hostInformation.mainUser} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = ["networkmanager" "wheel" "audio"];
     shell = pkgs.zsh;
   };
   users.mutableUsers = false;
@@ -68,8 +78,8 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "@wheel" ];
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["root" "@wheel"];
     };
   };
 

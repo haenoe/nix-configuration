@@ -9,8 +9,7 @@ let
   users = [
     haenoe
   ];
-in
-{
-  "hosts/haenoe@mercury/repository-key.age".publicKeys = [ mercury ] ++ users;
-  "hosts/haenoe@saturn/cloudflare-api-key.age".publicKeys = [ saturn ] ++ users;
+in {
+  "hosts/haenoe@mercury/repository-key.age".publicKeys = [mercury] ++ users;
+  "hosts/haenoe@saturn/cloudflare-api-key.age".publicKeys = [saturn] ++ users;
 }

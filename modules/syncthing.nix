@@ -1,5 +1,4 @@
-{ hostInformation, ... }:
-{
+{hostInformation, ...}: {
   services.syncthing = {
     enable = true;
     user = hostInformation.mainUser;
@@ -18,12 +17,12 @@
       aegis-backup = {
         id = "n73tt-4phja";
         path = "/home/haenoe/backups/aegis";
-        devices = [ "alpha" ];
+        devices = ["alpha"];
       };
       vault = {
         id = "tz2g5-tw3uo";
         path = "/home/haenoe/documents/vault";
-        devices = [ "macbook" ];
+        devices = ["macbook"];
       };
     };
   };

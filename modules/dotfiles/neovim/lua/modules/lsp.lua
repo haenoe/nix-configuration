@@ -58,7 +58,7 @@ return {
       nil_ls = {
         ["nil"] = {
           formatting = {
-            command = { "nixpkgs-fmt" },
+            command = { "alejandra" },
           },
         },
       },

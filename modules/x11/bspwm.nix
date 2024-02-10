@@ -1,4 +1,9 @@
-{ pkgs, hostInformation, lib, ... }: {
+{
+  pkgs,
+  hostInformation,
+  lib,
+  ...
+}: {
   services.xserver = {
     enable = true;
     windowManager.bspwm.enable = true;
@@ -31,7 +36,7 @@
     services = {
       sxhkd = {
         enable = true;
-        extraOptions = [ "-m -1" ];
+        extraOptions = ["-m -1"];
         keybindings = {
           "alt + Return" = "${pkgs.wezterm}/bin/wezterm";
           "alt + space" = "${pkgs.rofi}/bin/rofi -show drun";

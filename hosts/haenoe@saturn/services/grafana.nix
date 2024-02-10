@@ -1,9 +1,8 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   virtualisation.oci-containers.containers.grafana = {
     autoStart = true;
     image = "grafana/grafana-oss:9.5.12";
-    dependsOn = [ "traefik" ];
+    dependsOn = ["traefik"];
     volumes = [
       "grafana-storage:/var/lib/grafana"
     ];

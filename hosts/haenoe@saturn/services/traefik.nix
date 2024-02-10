@@ -1,5 +1,10 @@
-{ lib, config, hostName, hostInformation, ... }:
 {
+  lib,
+  config,
+  hostName,
+  hostInformation,
+  ...
+}: {
   age.secrets.cloudflare-api-key = {
     file = ../cloudflare-api-key.age;
     owner = "haenoe";
@@ -28,8 +33,8 @@
     environmentFiles = [
       config.age.secrets.cloudflare-api-key.path
     ];
-    ports = [ "${hostInformation.address}:80:80" "${hostInformation.address}:443:443" ];
-    volumes = [ "/run/docker.sock:/var/run/docker.sock:ro" "/etc/traefik/letsencrypt:/letsencrypt" ];
+    ports = ["${hostInformation.address}:80:80" "${hostInformation.address}:443:443"];
+    volumes = ["/run/docker.sock:/var/run/docker.sock:ro" "/etc/traefik/letsencrypt:/letsencrypt"];
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.dashboard.rule" = "Host(`traefik.${hostName}.haenoe.party`)";
@@ -44,13 +49,13 @@
     ];
   };
 
-  networking.firewall.trustedInterfaces = [ "internal0" ];
+  networking.firewall.trustedInterfaces = ["internal0"];
 
   systemd.services.docker-network-internal = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "docker.service" "docker.socket" ];
+    wantedBy = ["multi-user.target"];
+    after = ["docker.service" "docker.socket"];
     requiredBy = map (n: "docker-${n}.service") (lib.attrNames config.virtualisation.oci-containers.containers);
-    path = [ config.virtualisation.docker.package ];
+    path = [config.virtualisation.docker.package];
     script = ''
       exec docker network create -d bridge -o "com.docker.network.bridge.name"="internal0" internal
     '';
@@ -66,7 +71,7 @@
   virtualisation.oci-containers.containers.whoami = {
     autoStart = true;
     image = "traefik/whoami";
-    dependsOn = [ "traefik" ];
+    dependsOn = ["traefik"];
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.whoami.rule" = "Host(`whoami.${hostName}.haenoe.party`)";

@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   age.secrets.repository-key = {
     file = ./repository-key.age;
     owner = "haenoe";
@@ -15,7 +18,7 @@
         "/home/haenoe/backup"
         "/home/haenoe/isos"
       ];
-      extraBackupArgs = [ "--exclude-caches" ];
+      extraBackupArgs = ["--exclude-caches"];
       user = "haenoe";
       repository = "sftp:u350984-sub4@storagebox:/home/system-backup";
       passwordFile = config.age.secrets.repository-key.path;
