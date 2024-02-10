@@ -32,47 +32,76 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, nur, agenix, nix-index-database, nixos-hardware, stylix, neovim-nightly-overlay, ... } @ inputs:
-    {
-      hosts = {
-        mercury = {
-          mainUser = "haenoe";
-          system = "x86_64-linux";
-          deploy = false;
-          type = "nixos";
-        };
-        pluto = {
-          mainUser = "haenoe";
-          address = "192.168.178.71";
-          system = "aarch64-linux";
-          deploy = true;
-          type = "nixos";
-        };
-        saturn = {
-          mainUser = "haenoe";
-          address = "100.107.69.134";
-          system = "x86_64-linux";
-          deploy = true;
-          type = "nixos";
-        };
-        mars = {
-          mainUser = "i588211";
-          system = "aarch64-darwin";
-          deploy = false;
-          type = "home-manager";
-        };
+  outputs = { self, ... } @ inputs: {
+    hosts = {
+      mercury = {
+        mainUser = "haenoe";
+        system = "x86_64-linux";
+        deploy = false;
+        type = "nixos";
       };
-      nixosConfigurations = import ./hosts/nixos.nix {
-        inherit
-          self
-          inputs;
+      pluto = {
+        mainUser = "haenoe";
+        address = "192.168.178.71";
+        system = "aarch64-linux";
+        deploy = true;
+        type = "nixos";
       };
-      homeConfigurations = import ./hosts/home-manager.nix {
-        inherit self inputs;
+      saturn = {
+        mainUser = "haenoe";
+        address = "100.107.69.134";
+        system = "x86_64-linux";
+        deploy = true;
+        type = "nixos";
       };
-      deploy = import ./hosts/deploy.nix {
-        inherit self inputs deploy-rs;
+      mars = {
+        mainUser = "i588211";
+        system = "aarch64-darwin";
+        deploy = false;
+        type = "home-manager";
       };
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      neptune = {
+        mainUser = "haenoe";
+        address = "192.168.178.97";
+        system = "x86_64-linux";
+        deploy = true;
+        type = "nixos";
+      };
     };
+    nixosConfigurations = import ./hosts/nixos.nix {
+      inherit
+        self
+        inputs
+        ;
+    };
+    homeConfigurations = import ./hosts/home-manager.nix {
+      inherit
+        self
+        inputs
+        ;
+    };
+    deploy = import ./hosts/deploy.nix {
+      inherit
+        self
+        inputs
+        ;
+    };
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+    devShells =
+      inputs.nixpkgs.lib.genAttrs [ "x86_64-linux" ]
+        (system:
+          let
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
+          in
+          {
+            default = pkgs.mkShell {
+              nativeBuildInputs = with pkgs; [
+                inputs.agenix.packages.${system}.default
+                nil
+                deploy-rs
+                nixpkgs-fmt
+              ];
+            };
+          });
+  };
 }

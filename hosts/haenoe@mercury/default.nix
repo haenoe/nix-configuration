@@ -14,14 +14,12 @@
     imports = map (module: ../../modules/dotfiles + "${module}") [
       "/alacritty.nix"
       "/git.nix"
-      "/rofi.nix"
       "/firefox.nix"
       "/chromium.nix"
       "/direnv.nix"
       "/wezterm.nix"
       "/zsh.nix"
       "/picom.nix"
-      "/polybar.nix"
       "/gtk.nix"
       "/xdg.nix"
       "/ssh.nix"
@@ -68,8 +66,8 @@
 
   environment.systemPackages = with pkgs; [
     pcmanfm
-    obsidian
-    discord
+    # obsidian
+    # discord
     jetbrains.clion
     zotero
   ];
