@@ -65,18 +65,10 @@
       nixosConfigurations = import ./hosts/nixos.nix {
         inherit
           self
-          home-manager
-          inputs
-          nur
-          agenix
-          nixpkgs
-          nix-index-database
-          nixos-hardware
-          stylix
-          neovim-nightly-overlay;
+          inputs;
       };
       homeConfigurations = import ./hosts/home-manager.nix {
-        inherit self home-manager inputs nixpkgs;
+        inherit self inputs;
       };
       deploy = import ./hosts/deploy.nix {
         inherit self inputs deploy-rs;
