@@ -23,6 +23,8 @@
       "/gtk.nix"
       "/xdg.nix"
       "/ssh.nix"
+      "/zoxide.nix"
+      "/fzf.nix"
       "/neovim"
     ];
     home = {
